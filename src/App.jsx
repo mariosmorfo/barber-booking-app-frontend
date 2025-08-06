@@ -1,20 +1,12 @@
 import { BrowserRouter } from "react-router-dom"
-import Header from "./components/Header/Header"
-import Footer from "./components/Footer/footer"
-import MainSection from "./components/MainSection/MainSection"
+import HomePage from "./pages/HomePage"
 
 
 function App() {
- 
-
   return (
     <>
     <BrowserRouter>
-    
-    <Header/>
-    <MainSection/>
-    <Footer/>
-  
+    <HomePage/>
     </BrowserRouter>
     </>
   )
