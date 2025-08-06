@@ -18,7 +18,7 @@ import {
           <div>
             <Link to="/">
               <img
-                src="https://uploadthingy.s3.us-west-1.amazonaws.com/cRs3FS57yXxbEHYYbbPVtW/fcLogo.svg"
+                src="/logo.svg"
                 alt="Fresh Cuts Logo"
                 className="h-12 mb-6"
               />
