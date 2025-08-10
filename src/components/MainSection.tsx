@@ -32,7 +32,7 @@ import React from 'react'
             Book Your Appointment
           </a>
           <a
-            href="#services"
+            href="/team"
             className="bg-transparent border-2 border-white text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-white hover:text-gray-900 transition-colors"
           >
             Our Team
