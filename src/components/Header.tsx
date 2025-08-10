@@ -31,7 +31,7 @@ import { MenuIcon, X, UserPlusIcon } from 'lucide-react'
             Our Team
           </Link>
           <Link
-            to="/gallery"
+            to="/login"
             className="text-gray-800 hover:text-blue-500 font-medium"
           >
             Gallery
@@ -82,13 +82,6 @@ import { MenuIcon, X, UserPlusIcon } from 'lucide-react'
               onClick={() => setIsMenuOpen(false)}
             >
               Gallery
-            </Link>
-            <Link
-              to="/contact"
-              className="text-gray-800 hover:text-blue-500 font-medium py-2"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              Contact
             </Link>
             <Link
               to="/register"
