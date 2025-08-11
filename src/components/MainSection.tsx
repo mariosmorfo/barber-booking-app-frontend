@@ -1,5 +1,3 @@
-import React from 'react'
-
  const  MainSection = () => {
   return (
     <section className="relative bg-gray-900 h-[600px] md:h-[700px] overflow-hidden">
@@ -26,7 +24,7 @@ import React from 'react'
         </p>
         <div className="flex flex-col md:flex-row gap-4">
           <a
-            href="#booking"
+            href="/services"
             className="bg-blue-500 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-blue-600 transition-colors"
           >
             Book Your Appointment
