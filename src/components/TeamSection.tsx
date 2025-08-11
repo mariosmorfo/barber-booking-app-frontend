@@ -1,5 +1,3 @@
-import { circleDollarSign } from "@lucide/lab"
-
 const TeamSection = () => {
 
   const team = [
