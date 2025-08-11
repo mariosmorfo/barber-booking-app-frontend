@@ -1,4 +1,3 @@
-import React from 'react'
 import { Link } from 'react-router-dom'
 import {
   MapPin,
@@ -7,7 +6,6 @@ import {
   Mail,
   Instagram,
   Facebook,
-  Twitter,
 } from 'lucide-react'
 
  const Footer = () => {
