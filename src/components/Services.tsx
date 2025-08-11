@@ -1,7 +1,6 @@
 import { Scissors, Ruler } from "lucide-react";
 import { Icon } from 'lucide-react';
 import { towelFolded } from '@lucide/lab';
-import Header from "./Header";
 
 
 const Services = () => {
