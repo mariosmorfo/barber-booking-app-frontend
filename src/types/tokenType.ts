@@ -2,6 +2,6 @@ export type DecodedToken = {
   id: string;
   username: string;
   email: string;
-  role: 'ADMIN' | 'USER' | 'BARBER';
+  role: 'ADMIN' | 'CUSTOMER' | 'BARBER';
   exp: number;     
 };
