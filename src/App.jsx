@@ -1,18 +1,19 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { AuthProvider, useAuth } from "./context/AuthContext";
-
 import HomePage from "./pages/HomePage";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ServicesPage from "./pages/ServicesPage";
 import OurTeamPage from "./pages/OurTeamPage";
-
+import AppointmentPage from "./pages/AppointmentPage"; // <- add this
+import HeaderWrapper from "./components/HeaderWrapper";
 
 function ProtectedRoute({ children }) {
   const { token, loading } = useAuth();
   if (loading) return null;
   return token ? children : <Navigate to="/login" replace />;
 }
+
 function AdminRoute({ children }) {
   const { token, role, loading } = useAuth();
   if (loading) return null;
@@ -23,6 +24,7 @@ export default function App() {
   return (
     <AuthProvider>
       <BrowserRouter>
+        <HeaderWrapper />
         <Routes>
           {/* public */}
           <Route path="/" element={<HomePage />} />
@@ -43,6 +45,14 @@ export default function App() {
             element={
               <ProtectedRoute>
                 <OurTeamPage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="/appointments"                       // <- add this route
+            element={
+              <ProtectedRoute>
+                <AppointmentPage/>
               </ProtectedRoute>
             }
           />
