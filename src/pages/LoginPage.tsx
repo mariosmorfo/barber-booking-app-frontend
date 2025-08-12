@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import Header from "../components/Header";
 import Footer from "../components/Footer";
 import { loginSchema, type LoginCredentials } from "../types/loginType";
 import { loginUser } from "../services/loginService";
@@ -45,7 +44,6 @@ export default function LoginPage() {
 
   return (
     <div>
-      <Header />
       <div className="container mx-auto px-4 mt-5 mb-5">
         <div className="max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-gray-100">
           <div className="p-8">

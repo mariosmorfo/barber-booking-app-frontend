@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { api } from '../services/api';
-import Header from '../components/Header';
 import Footer from '../components/Footer';
  
 interface Address { city: string; street: string }
@@ -94,7 +93,6 @@ export default function RegisterPage() {
 
   return (
     <div>
-      <Header/>
       <div className="container mx-auto px-4 mt-5 mb-5">
         <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100">
           <div className="p-8">
