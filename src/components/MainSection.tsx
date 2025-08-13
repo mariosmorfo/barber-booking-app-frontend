@@ -24,7 +24,7 @@
         </p>
         <div className="flex flex-col md:flex-row gap-4">
           <a
-            href="/services"
+            href="/appointments"
             className="bg-blue-500 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-blue-600 transition-colors"
           >
             Book Your Appointment
