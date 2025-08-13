@@ -1,14 +1,15 @@
-import  {useState} from "react";
+import {useState} from "react";
 import { Link } from "react-router-dom";
 import { MenuIcon, X, UserPlusIcon } from "lucide-react";
 import { useAuth } from "../context/AuthContext";
-
+import { LogOut } from 'lucide-react';
 const CustomerHeader = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { token, logout } = useAuth();
   const authed = !!token;
 
   return (
+    <>
     <header className="bg-white sticky top-0 z-50 shadow-sm">
       <div className="container mx-auto px-4 py-4 flex items-center justify-between">
         <Link to="/">
@@ -16,6 +17,7 @@ const CustomerHeader = () => {
         </Link>
 
         <nav className="hidden md:flex items-center space-x-8">
+
           {authed && (
             <>
               <Link to="/services" className="text-gray-800 hover:text-blue-500 font-medium">
@@ -27,14 +29,8 @@ const CustomerHeader = () => {
               <Link to="/appointments" className="text-gray-800 hover:text-blue-500 font-medium">
                 Appointments
               </Link>
-              <Link
-                to="/booking"
-                className="bg-blue-500 text-white px-6 py-2 rounded hover:bg-blue-600 transition-colors font-medium"
-              >
-                Book Now
-              </Link>
               <button onClick={logout}  className="text-red-500 hover:text-red-600 font-medium cursor-pointer">
-                Logout
+                <LogOut/>
               </button>
             </>
           )}
@@ -86,7 +82,8 @@ const CustomerHeader = () => {
           </nav>
         </div>
       )}
-    </header>
+    </header></>
+    
   );
 };
 
