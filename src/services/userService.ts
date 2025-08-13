@@ -10,25 +10,25 @@ export type UserCreate = Omit<UserType, "_id" | "createdAt" | "updatedAt">;
 
 export type UserUpdate = Partial<Omit<UserType, "_id" | "createdAt" | "updatedAt" | "username">>;
 
-export async function registerUser(newUser: UserCreate): Promise<UserType> {
+export async function registerUser(newUser: UserCreate) {
   const { data } = await api.post<ApiRes<UserType>>(`${BASE}/create`, newUser);
   if (!data.status) throw new Error("Failed to create user");
   return data.data;
 }
 
-export async function getAllUsers(): Promise<UserType[]> {
+export async function getAllUsers() {
   const { data } = await api.get<ApiRes<UserType[]>>(`${BASE}`);
   if (!data.status) throw new Error("Failed to fetch users");
   return data.data;
 }
 
-export async function getUserByUsername(username: string): Promise<UserType> {
+export async function getUserByUsername(username: string) {
   const { data } = await api.get<ApiRes<UserType>>(`${BASE}/${username}`);
   if (!data.status) throw new Error("Failed to fetch user");
   return data.data;
 }
 
-export async function updateUser(username: string, updated: UserUpdate): Promise<UserType> {
+export async function updateUser(username: string, updated: UserUpdate){
   const { data } = await api.patch<ApiRes<UserType>>(
     `${BASE}/update/${username}`,
     updated,
@@ -37,7 +37,7 @@ export async function updateUser(username: string, updated: UserUpdate): Promise
   return data.data;
 }
 
-export async function deleteUserByUsername(username: string): Promise<UserType | null> {
+export async function deleteUserByUsername(username: string) {
   const { data } = await api.delete<ApiRes<UserType | null>>(
     `${BASE}/delete/${username}`,
   );
