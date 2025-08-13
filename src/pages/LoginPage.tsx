@@ -43,7 +43,8 @@ export default function LoginPage() {
   };
 
   return (
-    <div>
+    <>
+      <div>
       <div className="container mx-auto px-4 mt-5 mb-5">
         <div className="max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-gray-100">
           <div className="p-8">
@@ -116,5 +117,6 @@ export default function LoginPage() {
       </div>
       <Footer />
     </div>
+    </>
   );
 }
