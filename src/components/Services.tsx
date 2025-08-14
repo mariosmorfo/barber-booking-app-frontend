@@ -54,7 +54,7 @@ const Services = () => {
           ))}
         </div>
         <div className="mt-12 text-center">
-          <a href="#booking" className="inline-block bg-blue-500 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-blue-600 transition-colors">
+          <a href="/appointments" className="inline-block bg-blue-500 text-white px-8 py-3 rounded-md text-lg font-medium hover:bg-blue-600 transition-colors">
             Book Your Service
           </a>
         </div>
