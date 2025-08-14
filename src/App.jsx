@@ -7,6 +7,10 @@ import ServicesPage from "./pages/ServicesPage";
 import OurTeamPage from "./pages/OurTeamPage";
 import AppointmentPage from "./pages/AppointmentPage"; // <- add this
 import HeaderWrapper from "./components/HeaderWrapper";
+import AdminPage from "./pages/Admin/AdminPage";
+import BarbersAdminPage from "./pages/Admin/BarbersAdminPage";
+import UsersAdminPage from "./pages/Admin/UserAdminPage";
+// import AppointmentsAdminPage from "./pages/Admin/AppointmentAdminPage";
 
 function ProtectedRoute({ children }) {
   const { token, loading } = useAuth();
@@ -26,12 +30,11 @@ export default function App() {
       <BrowserRouter>
         <HeaderWrapper />
         <Routes>
-          {/* public */}
+        
           <Route path="/" element={<HomePage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
 
-          {/* private (any logged-in user) */}
           <Route
             path="/services"
             element={
@@ -49,7 +52,7 @@ export default function App() {
             }
           />
           <Route
-            path="/appointments"                       // <- add this route
+            path="/appointments"                       
             element={
               <ProtectedRoute>
                 <AppointmentPage/>
@@ -57,17 +60,13 @@ export default function App() {
             }
           />
 
-          {/* admin-only */}
-          <Route
-            path="/admin"
-            element={
-              <AdminRoute>
-                <div>Admin Panel</div>
-              </AdminRoute>
-            }
-          />
-
-          {/* fallback */}
+          <Route path="/admin" element={<AdminRoute><AdminPage/></AdminRoute>}>
+          <Route index element={<Navigate to="barbers" replace/>} />
+          <Route path="barbers" element={<BarbersAdminPage/>} />
+          <Route path="users" element={<UsersAdminPage/>} />
+          {/* <Route path="appointments" element={<AppointmentsAdminPage/>} /> */}
+        </Route>
+         
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>
