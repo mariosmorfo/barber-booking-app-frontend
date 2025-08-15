@@ -44,7 +44,7 @@ export default function RegisterPage() {
 
     const parsed = userSchema.safeParse(form);
     if (!parsed.success) {
-      setError(parsed.error.issues[0]?.message ?? "Please fix the highlighted fields");
+      setError("Please fix the highlighted fields");
       return;
     }
 
@@ -64,7 +64,7 @@ export default function RegisterPage() {
       setSuccess(`Welcome, ${data.data.firstname}!`);
       setForm(initialForm);
     } catch (err: any) {
-      setError(err?.message ?? "Registration failed. Please try again.");
+      setError("Registration failed. Please try again.");
     } finally {
       setLoading(false);
     }
@@ -247,7 +247,6 @@ export default function RegisterPage() {
           </div>
         </div>
       </div>
-      <Footer />
     </>
   );
 }
