@@ -32,7 +32,7 @@ const Services = () => {
             >
               <div className="mb-4">{iconFor(s.name)}</div>
               <h3 className="text-xl font-bold text-gray-800 mb-2">{s.name}</h3>
-              {s.blurb && <p className="text-gray-600 mb-4">{s.blurb}</p>}
+              {s.description && <p className="text-gray-600 mb-4">{s.description}</p>}
               <p className="text-blue-600 font-bold text-xl">
                 {fmt(s.price)}
                 {s.duration ? <span className="text-gray-500 text-sm"> • {s.duration} min</span> : null}
