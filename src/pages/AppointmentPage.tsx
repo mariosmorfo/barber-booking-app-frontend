@@ -44,12 +44,12 @@ export default function AppointmentsPage() {
         setInitialLoading(true);
 
         const bs = await getAllBarbers();
-        if (mounted) setBarbers(bs.slice(0, 3));
+        if (mounted) setBarbers(bs);
 
         const appts = await getMyAppointments(token, "self");
         if (mounted) setMine(appts);
-      } catch (e: any) {
-        if (mounted) setError(e?.message ?? "Failed to load appointments");
+      } catch (error) {
+        if (mounted) setError("Failed to load appointments");
       } finally {
         if (mounted) setInitialLoading(false);
       }
@@ -88,8 +88,8 @@ export default function AppointmentsPage() {
 
       setForm({ barberId: "", serviceName: "", dateTime: "" });
       setSelectedBarberId("");
-    } catch (e: any) {
-      setError(e?.message ?? "Failed to create appointment");
+    } catch (error) {
+      setError("Failed to create appointment");
     } finally {
       setLoading(false);
     }
@@ -101,8 +101,8 @@ export default function AppointmentsPage() {
       await cancelAppointment(token, id);
       const appts = await getMyAppointments(token, "self");
       setMine(appts);
-    } catch (e: any) {
-      setError(e?.message ?? "Failed to cancel appointment");
+    } catch (error) {
+      setError("Failed to cancel appointment");
     }
   }
 
