@@ -29,8 +29,8 @@ export default function EditUserForm({ user, onSubmit, onCancel }: Props) {
       const payload = { ...form };
       if (!payload?.password) delete (payload as any).password;
       await onSubmit(payload);
-    } catch (e: any) {
-      setErr(e?.message ?? "Update failed");
+    } catch (error) {
+      setErr("Update failed");
     } finally {
       setLoading(false);
     }
@@ -49,16 +49,10 @@ export default function EditUserForm({ user, onSubmit, onCancel }: Props) {
           value={form.phone ?? ""} onChange={e => setForm(f => ({ ...f, phone: e.target.value }))} />
         <input className="border rounded-lg px-3 py-2" placeholder="Age"
           value={form.age ?? ""} onChange={e => setForm(f => ({ ...f, age: e.target.value }))} />
-        <select className="border rounded-lg px-3 py-2"
-          value={form.role ?? "CUSTOMER"} onChange={e => setForm(f => ({ ...f, role: e.target.value as any }))}>
-          <option value="CUSTOMER">CUSTOMER</option>
-          <option value="BARBER">BARBER</option>
-          <option value="ADMIN">ADMIN</option>
-        </select>
+        <input className="border rounded-lg px-3 py-2 w-full" type="password" placeholder="New password (optional)"
+          value={(form as any).password ?? ""} onChange={e => setForm(f => ({ ...f, password: e.target.value as any }))} />
+          {err && <p className="text-sm text-red-600">{err}</p>}
       </div>
-      <input className="border rounded-lg px-3 py-2 w-full" type="password" placeholder="New password (optional)"
-        value={(form as any).password ?? ""} onChange={e => setForm(f => ({ ...f, password: e.target.value as any }))} />
-      {err && <p className="text-sm text-red-600">{err}</p>}
       <div className="flex gap-2">
         <button type="submit" disabled={loading} className="px-4 py-2 bg-blue-600 text-white rounded-lg">
           {loading ? "Saving…" : "Save"}
