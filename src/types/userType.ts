@@ -7,17 +7,17 @@ export const userSchema = z
     lastname: z.string().min(1, 'Last name is required'),
     username: z.string().min(1, 'Username is required'),
     email: z.string().email('Please enter a valid email address'),
-    password: z.string().min(8, 'Password must be at least 8 characters'),
+    password: z.string().min(4, 'Password must be at least 4 characters'),
     confirmPassword: z.string(),
     phone: z.string().min(1, 'Phone is required'),
     age: z.string().min(1, 'Age is required'),
     role: z.enum(['ADMIN', 'BARBER', 'CUSTOMER']).default('CUSTOMER'),
     address: z
       .object({
-        city: z.string().optional(),
-        street: z.string().optional(),
+        city: z.string(),
+        street: z.string(),
       })
-      .optional(),
+      ,
     createdAt: z.string().optional(),
     updatedAt: z.string().optional(),
   })
