@@ -1,122 +1,138 @@
 import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
-import Footer from "../components/Footer";
-import { loginSchema, type LoginCredentials } from "../types/loginType";
-import { loginUser } from "../services/loginService";
+import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
 import { useAuth } from "../context/AuthContext";
+import { loginUser, loginBarber } from "../services/loginService";
+import type { DecodedToken } from "../types/tokenType";
 
 export default function LoginPage() {
   const navigate = useNavigate();
   const { login } = useAuth();
 
-  const [form, setForm] = useState<LoginCredentials>({ username: "", password: "" });
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState<string>("");
-  const [showPwd, setShowPwd] = useState(false);
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [showPw, setShowPw] = useState(false);
+  const [err, setErr] = useState("");
+  const [loginAsBarber, setLoginAsBarber] = useState(false); 
 
-  const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setForm(prev => ({ ...prev, [name]: value }));
-  };
-
-  const onSubmit = async (e: React.FormEvent) => {
+  async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    setError("");
+    setErr("");
 
-    const parsed = loginSchema.safeParse(form);
-    if (!parsed.success) {
-      setError(parsed.error.issues[0]?.message ?? "Please check your inputs");
-      return;
-    }
-
-    setLoading(true);
     try {
-      const token = await loginUser(parsed.data);
-      login(token);
-      navigate("/");
-    } catch (err: any) {
-      setError(err?.message ?? "Login failed. Please try again.");
-      console.error(err);
-    } finally {
-      setLoading(false);
+      const token = loginAsBarber
+        ? await loginBarber({ username, password })   
+        : await loginUser({ username, password });   
+      login(token); 
+      const { role } = jwtDecode<DecodedToken>(token);
+      if (role === "ADMIN") navigate("/admin", { replace: true });
+      else if (role === "BARBER") navigate("/barber", { replace: true });
+      else navigate("/", { replace: true });
+    } catch (error) {
+      setErr("Login failed. Check your credentials.");
+    
     }
-  };
+  }
 
   return (
-    <>
-      <div>
-      <div className="container mx-auto px-4 mt-5 mb-5">
-        <div className="max-w-md mx-auto bg-white rounded-2xl shadow-sm border border-gray-100">
+    <div className="py-16 bg-gray-50 min-h-screen">
+      <div className="container mx-auto px-4">
+        <div className="max-w-2xl mx-auto bg-white rounded-2xl shadow-sm border border-gray-100">
           <div className="p-8">
-            <h1 className="text-3xl font-bold text-center mb-2">Login</h1>
-            <p className="text-center text-gray-500 mb-8">
-              Sign in to book services and manage your appointments.
-            </p>
+            
+            <div className="text-center mb-8">
+              <h1 className="text-3xl font-semibold">Welcome Back</h1>
+              <p className="text-gray-600 mt-1">
+                Sign in to book or manage your appointments.
+              </p>
+            </div>
 
-            {error && (
-              <div className="mb-6 p-4 bg-red-50 text-red-700 border border-red-200 rounded-lg">
-                {error}
+            
+            <div className="mb-6 flex justify-center">
+              <div className="inline-flex rounded-xl border border-gray-200 overflow-hidden">
+                <button
+                  type="button"
+                  onClick={() => setLoginAsBarber(false)}
+                  className={`px-4 py-2 text-sm ${
+                    !loginAsBarber
+                      ? "bg-blue-600 text-white"
+                      : "bg-white text-gray-700"
+                  }`}
+                >
+                  User
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setLoginAsBarber(true)}
+                  className={`px-4 py-2 text-sm border-l border-gray-200 ${
+                    loginAsBarber
+                      ? "bg-blue-600 text-white"
+                      : "bg-white text-gray-700"
+                  }`}
+                >
+                  Barber
+                </button>
+              </div>
+            </div>
+
+            {err && (
+              <div className="mb-4 rounded-xl border border-red-200 bg-red-50 text-red-700 px-4 py-3 text-sm">
+                {err}
               </div>
             )}
 
-            <form onSubmit={onSubmit} className="space-y-5">
+            <form onSubmit={handleSubmit} className="space-y-4">
               <div>
-                <label htmlFor="username" className="block text-gray-700 mb-1 font-medium">Username</label>
+                <label className="block text-sm font-medium mb-1">Username</label>
                 <input
-                  id="username"
-                  name="username"
-                  value={form.username}
-                  onChange={onChange}
+                  type="text"
+                  className="w-full border rounded-lg px-3 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  placeholder="Enter your username"
+                  value={username}
+                  onChange={(e) => setUsername(e.target.value)}
                   autoComplete="username"
-                  className="w-full p-2.5 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
-                  required
                 />
               </div>
 
               <div>
-                <label htmlFor="password" className="block text-gray-700 mb-1 font-medium">Password</label>
+                <label className="block text-sm font-medium mb-1">Password</label>
                 <div className="relative">
                   <input
-                    id="password"
-                    name="password"
-                    type={showPwd ? "text" : "password"}
-                    value={form.password}
-                    onChange={onChange}
+                    type={showPw ? "text" : "password"}
+                    className="w-full border rounded-lg px-3 py-2 pr-16 focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    placeholder="Enter your password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
                     autoComplete="current-password"
-                    className="w-full p-2.5 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500 pr-16"
-                    required
                   />
                   <button
                     type="button"
-                    onClick={() => setShowPwd(s => !s)}
-                    className="absolute right-2 top-1/2 -translate-y-1/2 text-sm px-2 py-1 text-blue-600 hover:text-blue-700"
-                    aria-label={showPwd ? "Hide password" : "Show password"}
+                    onClick={() => setShowPw((s) => !s)}
+                    className="absolute inset-y-0 right-3 my-auto text-sm text-blue-600"
+                    aria-label={showPw ? "Hide password" : "Show password"}
                   >
-                    {showPwd ? "Hide" : "Show"}
+                    {showPw ? "Hide" : "Show"}
                   </button>
                 </div>
               </div>
 
               <button
                 type="submit"
-                disabled={loading}
-                className="w-full bg-blue-600 text-white py-3 rounded-xl font-medium hover:bg-blue-700 disabled:opacity-60 disabled:cursor-not-allowed"
+                className="w-full bg-blue-600 text-white rounded-lg py-3 font-medium hover:bg-blue-700 transition-colors"
               >
-                {loading ? "Logging in…" : "Login"}
+                Login
               </button>
-
-              <p className="text-center text-gray-600">
-                Don’t have an account?{" "}
-                <Link to="/register" className="text-blue-600 hover:underline">
-                  Create one
-                </Link>
-              </p>
             </form>
+
+            <p className="text-center text-sm text-gray-600 mt-6">
+              Don’t have an account?{" "}
+              <a href="/register" className="text-blue-600 hover:underline">
+                Create one
+              </a>
+            </p>
           </div>
         </div>
       </div>
-      <Footer />
     </div>
-    </>
   );
 }
