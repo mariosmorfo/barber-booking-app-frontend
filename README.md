@@ -62,6 +62,17 @@ This is a **frontend React application** built with **Vite, React, TailwindCSS, 
 
 ---
 
+## Demo Credentials
+
+Use these demo accounts to log in and explore the app:
+
+- **Admin** → username: `morfonidis`, password: `12345`
+
+- **Barber** → username: `marcus`, password: `12345`
+
+- **Customer** → username: `bill`, password: `12345`
+
+
 ## Clone the Repository
 
 git clone git@github.com:mariosmorfo/barber-booking-app-frontend.git
@@ -74,9 +85,7 @@ npm install
 
 ## Create .env File
 
-MONGODB_URI = your-mongodb-uri
-
-JWT_SECRET = your-jwt-secret
+VITE_API_URL=http://localhost:3000
 
 ## Run the Application 
 
