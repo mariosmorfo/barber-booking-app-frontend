@@ -1,5 +1,4 @@
 import { api } from "./api";                   
-import { getToken } from "../utils/authTokenUtil";
 import type { UserType } from "../types/userType";
 
 const BASE = "/api/user";
