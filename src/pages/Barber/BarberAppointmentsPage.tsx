@@ -37,12 +37,13 @@ export default function BarberAppointmentsPage() {
   }, [token, userId]);
 
   function personName(p: AppointmentType["userId"]) {
+    if (!p) return " ";
     if (typeof p === "string") return p;
     const full =
       [p.firstname, p.lastname].filter(Boolean).join(" ").trim() ||
       p.username ||
       p._id;
-    return full;
+    return full || " ";
   }
 
   function fmt(dt: string) {
