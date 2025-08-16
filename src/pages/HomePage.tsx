@@ -1,7 +1,6 @@
 import Footer from "../components/Footer";
 import MainSection from "../components/MainSection";
 
-
 const HomePage =  () => {
   return (
     <>
