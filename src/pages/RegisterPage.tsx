@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { z } from "zod";
 import { api } from "../services/api";
-import Footer from "../components/Footer";
 import { userSchema } from "../types/userType"; 
 
 type RegisterForm = z.input<typeof userSchema>;
@@ -30,7 +29,7 @@ export default function RegisterPage() {
     if (name === "city" || name === "street") {
       setForm(prev => ({
         ...prev,
-        address: { ...(prev.address ?? {}), [name]: value },
+        address: { ...(prev.address), [name]: value },
       }));
     } else {
       setForm(prev => ({ ...prev, [name]: value }));
@@ -44,9 +43,11 @@ export default function RegisterPage() {
 
     const parsed = userSchema.safeParse(form);
     if (!parsed.success) {
-      setError("Please fix the highlighted fields");
+      const first = parsed.error.issues[0];
+      setError(first?.message ?? "Please inspect the form again");
       return;
     }
+
 
     const {
       confirmPassword: _omitConfirm,
@@ -169,7 +170,7 @@ export default function RegisterPage() {
                   <input
                     id="city"
                     name="city"
-                    value={form.address?.city ?? ""}
+                    value={form.address.city}
                     onChange={onChange}
                     className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
@@ -180,7 +181,7 @@ export default function RegisterPage() {
                   <input
                     id="street"
                     name="street"
-                    value={form.address?.street ?? ""}
+                    value={form.address.street}
                     onChange={onChange}
                     className="w-full p-2 border border-gray-300 rounded focus:outline-none focus:ring-2 focus:ring-blue-500"
                   />
