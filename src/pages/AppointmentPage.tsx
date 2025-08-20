@@ -147,7 +147,7 @@ export default function AppointmentsPage() {
                   }`}
                 >
                   <div className="flex items-center gap-3">
-                    <div className="h-12 w-12 rounded-full bg-gray-200 flex items-center justify-center">
+                    <div className="h-12 w-12 rounded-full bg-blue-200 flex items-center justify-center">
                       <span className="font-semibold">
                         {name
                           .split(" ")
