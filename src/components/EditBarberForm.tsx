@@ -35,6 +35,7 @@ export default function EditBarberForm({ barber, onSubmit, onCancel }: Props) {
     const payload = { ...form };
     if (!payload.password) delete (payload as any).password;
     await onSubmit(payload);
+    alert("Barber updated successfully!")
   }
 
   return (
