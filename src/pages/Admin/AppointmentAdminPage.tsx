@@ -18,7 +18,7 @@ export default function AppointmentsAdminPage() {
           const t = iso ? Date.parse(iso) : NaN;
           return Number.isFinite(t) ? t : 0;
         };
-        const sorted = [...data].sort((a, b) => safeTime(b.dateTime) - safeTime(a.dateTime));
+        const sorted = [...data].sort((a, b) => safeTime(a.dateTime) - safeTime(b.dateTime));
 
         setRows(sorted);
       } catch (e) {
