@@ -29,6 +29,7 @@ export default function EditUserForm({ user, onSubmit, onCancel }: Props) {
       const payload = { ...form };
       if (!payload?.password) delete (payload as any).password;
       await onSubmit(payload);
+      alert("User updated successfully!");
     } catch (error) {
       setErr("Update failed");
     } finally {
