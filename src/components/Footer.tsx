@@ -71,7 +71,7 @@ import {
                   to="/appointments"
                   className="hover:text-blue-500 transition-colors"
                 >
-                  Book Now
+                  Appointments
                 </Link>
               </li>
             </ul>
