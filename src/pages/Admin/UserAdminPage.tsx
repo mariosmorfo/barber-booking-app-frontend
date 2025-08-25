@@ -82,6 +82,7 @@ export default function UsersAdmin() {
     try {
       await deleteUserByUsername(username);
       await load();
+      alert("User deleted successfully!")
     } catch {
       setErr("Failed to delete user");
     }
