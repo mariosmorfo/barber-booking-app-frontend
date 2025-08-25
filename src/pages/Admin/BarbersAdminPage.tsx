@@ -89,6 +89,7 @@ export default function BarbersAdmin() {
     try {
       await deleteBarberByUsername(username);
       await load();
+      alert("Barber deleted successfully!")
     } catch (error) {
       setErr("Failed to delete barber");
     }
