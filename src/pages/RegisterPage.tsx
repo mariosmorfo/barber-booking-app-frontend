@@ -3,6 +3,7 @@ import { z } from "zod";
 import { api } from "../services/api";
 import { userSchema } from "../types/userType"; 
 import { useNavigate } from "react-router-dom"
+
 type RegisterForm = z.input<typeof userSchema>;
 
 const initialForm: RegisterForm = {
@@ -63,8 +64,8 @@ export default function RegisterPage() {
       const { data } = await api.post("/api/user/create", payload);
       if (!data?.status) throw new Error("Failed to create user");
       setForm(initialForm);
-      navigate("/login");
-    } catch (err: any) {
+      navigate("/login", { replace: true });
+    } catch (error) {
       setError("Registration failed. Please try again.");
     } finally {
       setLoading(false);
