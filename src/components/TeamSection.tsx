@@ -43,7 +43,7 @@ const TeamSection = () => {
               <img
               src={member.img}
               alt={member.name}
-              className="w-full h-100 object-cover"
+              className="w-full h-115 object-cover"
               />
             </div>
             <div className="p-6">
