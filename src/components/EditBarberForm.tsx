@@ -27,7 +27,7 @@ export default function EditBarberForm({ barber, onSubmit, onCancel }: Props) {
   }
 
   function addSvc() {
-    setForm(f => ({ ...f, servicesOffered: [...(f.servicesOffered ?? []), { name: "", duration: 30, price: 0 }] }));
+    setForm(f => ({ ...f, servicesOffered: [...(f.servicesOffered ?? []), { name: "", duration: 0, price: 0 }] }));
   }
 
   async function handleSubmit(e: React.FormEvent) {
