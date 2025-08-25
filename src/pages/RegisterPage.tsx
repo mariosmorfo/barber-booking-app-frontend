@@ -23,6 +23,7 @@ export default function RegisterPage() {
   const [error, setError] = useState<string>("");
   const [success, setSuccess] = useState<string>("");
   const [showPwd, setShowPwd] = useState(false);
+  const navigate = useNavigate();
 
   const onChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -37,7 +38,6 @@ export default function RegisterPage() {
   };
 
   const onSubmit = async (e: React.FormEvent) => {
-    const navigate = useNavigate();
     e.preventDefault();
     setError("");
     setSuccess("");
@@ -48,7 +48,6 @@ export default function RegisterPage() {
       setError(first?.message ?? "Please inspect the form again");
       return;
     }
-
 
     const {
       confirmPassword: _omitConfirm,
@@ -63,7 +62,6 @@ export default function RegisterPage() {
     try {
       const { data } = await api.post("/api/user/create", payload);
       if (!data?.status) throw new Error("Failed to create user");
-      setSuccess(`Welcome, ${data.data.firstname}!`);
       setForm(initialForm);
       navigate("/login");
     } catch (err: any) {
