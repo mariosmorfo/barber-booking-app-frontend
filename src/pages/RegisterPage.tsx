@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { z } from "zod";
 import { api } from "../services/api";
 import { userSchema } from "../types/userType"; 
-
+import { useNavigate } from "react-router-dom"
 type RegisterForm = z.input<typeof userSchema>;
 
 const initialForm: RegisterForm = {
@@ -37,6 +37,7 @@ export default function RegisterPage() {
   };
 
   const onSubmit = async (e: React.FormEvent) => {
+    const navigate = useNavigate();
     e.preventDefault();
     setError("");
     setSuccess("");
@@ -64,6 +65,7 @@ export default function RegisterPage() {
       if (!data?.status) throw new Error("Failed to create user");
       setSuccess(`Welcome, ${data.data.firstname}!`);
       setForm(initialForm);
+      navigate("/login");
     } catch (err: any) {
       setError("Registration failed. Please try again.");
     } finally {
