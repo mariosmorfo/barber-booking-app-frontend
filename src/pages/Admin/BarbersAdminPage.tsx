@@ -55,7 +55,7 @@ export default function BarbersAdmin() {
   function addSvc() {
     setForm((f) => ({
       ...f,
-      servicesOffered: [...f.servicesOffered, { name: "", duration: 30, price: 0 }],
+      servicesOffered: [...f.servicesOffered, { name: "", duration: 0, price: 0 }],
     }));
   }
 
