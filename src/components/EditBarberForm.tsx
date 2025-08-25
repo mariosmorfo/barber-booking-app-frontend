@@ -41,9 +41,9 @@ export default function EditBarberForm({ barber, onSubmit, onCancel }: Props) {
   return (
     <form onSubmit={handleSubmit} className="space-y-3">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-        <input className="border rounded-lg px-3 py-2" placeholder="First name"
+        <input className="border rounded-lg px-3 py-2" placeholder="Firstname"
           value={form.firstname ?? ""} onChange={e => setForm(f => ({ ...f, firstname: e.target.value }))} />
-        <input className="border rounded-lg px-3 py-2" placeholder="Last name"
+        <input className="border rounded-lg px-3 py-2" placeholder="Lastname"
           value={form.lastname ?? ""} onChange={e => setForm(f => ({ ...f, lastname: e.target.value }))} />
         <input className="border rounded-lg px-3 py-2" placeholder="Email"
           value={form.email ?? ""} onChange={e => setForm(f => ({ ...f, email: e.target.value }))} />

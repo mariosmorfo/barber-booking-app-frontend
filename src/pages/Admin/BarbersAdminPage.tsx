@@ -193,13 +193,13 @@ export default function BarbersAdmin() {
         <form onSubmit={onCreate} className="space-y-3 rounded-2xl border p-4">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
             <input
-              placeholder="First name"
+              placeholder="Firstname"
               className="border rounded-lg px-3 py-2"
               value={form.firstname}
               onChange={(e) => setForm((f) => ({ ...f, firstname: e.target.value }))}
             />
             <input
-              placeholder="Last name"
+              placeholder="Lastname"
               className="border rounded-lg px-3 py-2"
               value={form.lastname}
               onChange={(e) => setForm((f) => ({ ...f, lastname: e.target.value }))}
