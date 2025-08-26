@@ -216,7 +216,7 @@ export default function UsersAdmin() {
               onChange={(e) => setForm((f) => ({ ...f, phone: e.target.value }))}
             />
             <input
-              placeholder="Age (string)"
+              placeholder="Age"
               className="border rounded-lg px-3 py-2"
               value={form.age}
               onChange={(e) => setForm((f) => ({ ...f, age: e.target.value }))}
