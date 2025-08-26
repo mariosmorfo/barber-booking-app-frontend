@@ -12,7 +12,6 @@ export default function BarberAppointmentsPage() {
   const [rows, setRows] = useState<AppointmentType[]>([]);
   const [loading, setLoading] = useState(true);
   const [err, setErr] = useState("");
-  const { role } = useAuth();
 
   async function load() {
     if (!token || !userId) return;
@@ -77,11 +76,6 @@ export default function BarberAppointmentsPage() {
 
   return (
     <div className="max-w-4xl mx-auto mt-10">
-
-      <div className="mb-6 flex items-center justify-between">
-        <h1 className="text-3xl font-bold">Barber Panel</h1>
-        <span className="text-sm text-gray-500">Role: {role}</span>
-      </div>
       <h2 className="text-xl font-semibold mb-3 bg-blue-600 px-3 py-2 rounded-lg text-white max-w-50">My Appointments</h2>
 
       {loading ? (
