@@ -139,7 +139,7 @@ export default function UsersAdmin() {
         ) : (
           <ul className="divide-y rounded-2xl border">
             {filtered.map((u) => (
-              <li key={u._id ?? u.username} className="p-4">
+              <li key={u._id} className="p-4">
                 <div className="flex items-center justify-between">
                   <div>
                     <p className="font-medium">
