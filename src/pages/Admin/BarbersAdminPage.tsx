@@ -228,7 +228,6 @@ export default function BarbersAdmin() {
               value={form.age}
               onChange={(e) => setForm((f) => ({ ...f, age: e.target.value }))}
             />
-          </div>
           <input
             type="password"
             placeholder="Password"
@@ -245,6 +244,7 @@ export default function BarbersAdmin() {
               setForm((f) => ({ ...f, confirmPassword: e.target.value }))
             }
           />
+          </div>
 
           <div className="space-y-2">
             <p className="font-medium">Services</p>
