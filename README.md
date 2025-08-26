@@ -1,4 +1,4 @@
-# Barber Appointment Booking 
+# Barber Appointment App
 
 This is a **frontend React application** built with **React, Vite, TailwindCSS, Axios and Zod** that provides a modern user interface for booking and managing appointments in a barber shop system. It connects to the backend REST API for user authentication, appointment scheduling and admin management of users and barbers.
 
@@ -42,7 +42,7 @@ This is a **frontend React application** built with **React, Vite, TailwindCSS, 
 
 - Full administrative access
 
-- Can create, update, or delete both barbers and users
+- Can create, update or delete both barbers and users
 
 - Can view all appointments
 
@@ -50,7 +50,7 @@ This is a **frontend React application** built with **React, Vite, TailwindCSS, 
 
 - Can view appointments assigned to them
 
-- Can update appointment statuses (completed or cancelled)
+- Can update appointment statuses (e.g. mark as completed or cancelled)
 
 **CUSTOMER**
 
