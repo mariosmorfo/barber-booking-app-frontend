@@ -57,7 +57,7 @@ export default function BarberAppointmentsPage() {
     if (!token) return;
     if (!confirm("Cancel this appointment?")) return;
     try {
-      await cancelAppointment(token,id);
+      await cancelAppointment(id);
       await load();
     } catch {
       alert("Failed to cancel appointment");
