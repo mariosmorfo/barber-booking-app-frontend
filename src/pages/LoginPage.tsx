@@ -20,14 +20,20 @@ export default function LoginPage() {
     setErr("");
 
     try {
-      const token = loginAsBarber
-        ? await loginBarber({ username, password })   
-        : await loginUser({ username, password });   
-      login(token); 
-      const { role } = jwtDecode<DecodedToken>(token);
-      if (role === "ADMIN") navigate("/admin", { replace: true });
-      else if (role === "BARBER") navigate("/barber", { replace: true });
-      else navigate("/", { replace: true });
+    const token = loginAsBarber
+      ? await loginBarber({ username: username.trim(), password })
+      : await loginUser({ username: username.trim(), password });
+
+    login(token);
+
+    const payload = jwtDecode<DecodedToken>(token);
+    const role = payload?.role;
+
+    const route =
+      role === "ADMIN" ? "/admin" :
+      role === "BARBER" ? "/barber" : "/";
+
+    navigate(route, { replace: true });
     } catch (error) {
       setErr("Login failed. Check your credentials.");
     
