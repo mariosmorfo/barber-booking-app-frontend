@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { use, useEffect, useMemo, useState } from "react";
 import { getToken } from "../utils/authTokenUtil";
 import {
   createAppointment,
@@ -46,7 +46,7 @@ export default function AppointmentsPage() {
         const bs = await getAllBarbers();
         if (mounted) setBarbers(bs);
 
-        const appts = await getMyAppointments(token, "self");
+        const appts = await getMyAppointments();
         if (mounted) setMine(appts);
       } catch (error) {
         if (mounted) setError("Failed to load appointments");
@@ -81,9 +81,9 @@ export default function AppointmentsPage() {
         ...form,
         dateTime: new Date(form.dateTime).toISOString(),
       };
-      await createAppointment(token, payload);
+      await createAppointment(payload);
 
-      const appts = await getMyAppointments(token, "self");
+      const appts = await getMyAppointments();
       setMine(appts);
 
       setForm({ barberId: "", serviceName: "", dateTime: "" });
@@ -98,8 +98,8 @@ export default function AppointmentsPage() {
   async function onCancel(id: string) {
     if (!token) return;
     try {
-      await cancelAppointment(token, id);
-      const appts = await getMyAppointments(token, "self");
+      await cancelAppointment(id);
+      const appts = await getMyAppointments();
       setMine(appts);
     } catch (error) {
       setError("Failed to cancel appointment");
