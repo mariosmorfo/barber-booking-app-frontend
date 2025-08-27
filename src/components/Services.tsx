@@ -9,9 +9,6 @@ const Services = () => {
     if (name.toLowerCase().includes("beard")) return <Sparkles className="h-8 w-8 text-blue-500" />;
     return <Scissors className="h-8 w-8 text-blue-500"/>; 
   };
-
-  const fmt = (n?: number) => (typeof n === "number" ? `$ ${n}` : "");
-
   return (
     <section id="services" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -33,14 +30,12 @@ const Services = () => {
               <div className="mb-4">{iconFor(s.name)}</div>
               <h3 className="text-xl font-bold text-gray-800 mb-2">{s.name}</h3>
               {s.description && <p className="text-gray-600 mb-4">{s.description}</p>}
-              <p className="text-blue-600 font-bold text-xl">
-                {fmt(s.price)}
-                {s.duration ? <span className="text-gray-500 text-sm"> • {s.duration} min</span> : null}
+              <p className="text-blue-600 font-bold text-xl">$ {(s.price)}
+                <span className="text-gray-500 text-sm"> • {s.duration} min</span>
               </p>
             </div>
           ))}
         </div>
-
         <div className="mt-12 text-center">
           <Link
             to="/appointments"
