@@ -19,14 +19,14 @@ export async function findAllAppointmentsAdmin() {
   return data.data;
 }
 
-export async function createAppointment(token: string, payload: CreateAppointmentInput){
+export async function createAppointment(payload: CreateAppointmentInput){
   const { data } = await api.post<ApiRes<AppointmentType>>(`${BASE}/create`, payload);
   if (!data.status) throw new Error("Failed to create appointment");
   return data.data;
 }
 
-export async function getMyAppointments(token: string, userId: string){
-  const { data } = await api.get<ApiRes<AppointmentType[]>>(`${BASE}/user/${userId}`);
+export async function getMyAppointments(){
+  const { data } = await api.get<ApiRes<AppointmentType[]>>(`${BASE}/user/`);
   if (!data.status) throw new Error("Failed to fetch appointments");
   return data.data;
 }
@@ -38,7 +38,7 @@ export async function getAppointmentsByBarber(barberId: string){
   return data.data;
 }
 
-export async function cancelAppointment(token: string, id: string) {
+export async function cancelAppointment(id: string) {
   const { data } = await api.delete<{ message: string }>(
     `${BASE}/cancel/${id}`);
   return data.message;
