@@ -70,7 +70,6 @@ const CustomerHeader = () => {
                 <Link to="/services" onClick={() => setIsMenuOpen(false)}>Services</Link>
                 <Link to="/team" onClick={() => setIsMenuOpen(false)}>Our Team</Link>
                 <Link to="/appointments" onClick={() => setIsMenuOpen(false)}>Appointments</Link>
-                <Link to="/booking" onClick={() => setIsMenuOpen(false)}>Book Now</Link>
                 <button onClick={logout} className="text-left text-red-500">Logout</button>
               </>
             ) : (
